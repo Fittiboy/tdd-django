@@ -30,6 +30,10 @@ class HomePageTest(TestCase):
         self.assertIn('itemey 1', response.content.decode())
         self.assertIn('itemey 2', response.content.decode())
 
+    def test_only_saves_items_when_necessary(self):
+        self.client.get('/')
+        self.assertEqual(Item.objects.count(), 0)
+
 
 class ItemModelTest(TestCase):
 
